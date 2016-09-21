@@ -1,4 +1,4 @@
-Package: brostatistics2
+Package: brostatistics
 Title: Statistics for bros
 Version: 0.0.0.9000
 Authors@R: person("All the", "bros", email = "pelishk@gmail.com", role = c("aut", "cre"))

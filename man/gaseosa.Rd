@@ -4,7 +4,7 @@
 \alias{gaseosa}
 \title{Genera una tabla (base de datosgs de encuesta) una vez que se le pasa un .csv y un "catálogo" (en excel) que se hayan generado en "soda}
 \usage{
-gaseosa(xfile, yfile1)
+gaseosa(xfile, yfile)
 }
 \arguments{
 \item{xfile}{El .csv descargado de soda}

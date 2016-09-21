@@ -13,10 +13,10 @@
 
 exportarAbiertas <- function(xpa, xpb, xpc){
   # xpa <- datos
-  # xpb <- nombresR(datos,"P5")
-  # xpc <- "./abiertas/finalP5.csv"
-  
-  subdatos <- xpa[,xpb]
+  # xpb <- "P16_CELULAR_OTRO"
+  # xpc <- "./abiertas/test.csv"
+
+  subdatos <- subset(x = xpa, select = xpb)
   
   finalV <- NULL
   for(i in 1:length(subdatos)){

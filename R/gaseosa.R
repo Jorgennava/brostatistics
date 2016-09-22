@@ -43,7 +43,7 @@ gaseosa <- function(xfile, yfile){
       subdatosgs[,1] <- factor(x = subdatosgs[,1],levels = as.numeric(unlist(misEtiquetasVariable[,2])),labels = as.character(unlist(misEtiquetasVariable[,3])))
     }else{
       if(length(unique(subdatosgs[,1]))<=2){
-        subdatosgs[,1] <- factor(x = subdatosgs[,1],levels = c(1,0),labels = "TRUE","FALSE")
+        subdatosgs[,1] <- factor(x = subdatosgs[,1],levels = c(1,0),labels = c("TRUE","FALSE"))
       }
     }
     datosgs[,i] <- subdatosgs

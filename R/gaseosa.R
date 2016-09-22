@@ -11,8 +11,8 @@ gaseosa <- function(xfile, yfile){
   # Donde
   # xfile Es el .csv
   # yfile Es el excel que baja de soda
-  # xfile <- "CICLO DE VIDA DENTRO DEL HOGAR AUTOS_MOTOS 13-09-2016 18-23-09.csv"
-  # yfile <- "CICLO DE VIDA DENTRO DEL HOGAR AUTOS_MOTOS_DataMap_13-09-2016 18_24_04.xlsx"
+  # xfile <- "/Users/JM/Documents/01 Docs/Le work/20160919-Ciclo-de-vida-dispositivos/datos/CICLO DE VIDA DENTRO DEL HOGAR DISPOSITIVOS 20-09-2016 05-46-15.csv"
+  # yfile <- "/Users/JM/Documents/01 Docs/Le work/20160919-Ciclo-de-vida-dispositivos/datos/CICLO DE VIDA DENTRO DEL HOGAR DISPOSITIVOS_DataMap_20-09-2016 05_47_58.xlsx"
   # 
   #########################
   # Previos...
@@ -26,7 +26,7 @@ gaseosa <- function(xfile, yfile){
   etiquetasVariable <- readxl::read_excel(path = yfile,sheet = 2)
   
   for(i in 1:length(datosgs)){
-    # i <- 37
+    # i <- 82
     miDato <- names(datosgs)[i]
     # Uso subset porque quiero respetar la estructura de mis datosgs i.e. un data frame
     subdatosgs <- subset(datosgs, select = miDato)
@@ -41,6 +41,10 @@ gaseosa <- function(xfile, yfile){
       names(miVector) <- as.numeric(unlist(misEtiquetasVariable[,2]))
       
       subdatosgs[,1] <- factor(x = subdatosgs[,1],levels = as.numeric(unlist(misEtiquetasVariable[,2])),labels = as.character(unlist(misEtiquetasVariable[,3])))
+    }else{
+      if(length(unique(subdatosgs[,1]))<=2){
+        subdatosgs[,1] <- factor(x = subdatosgs[,1],levels = c(1,0),labels = "TRUE","FALSE")
+      }
     }
     datosgs[,i] <- subdatosgs
   }

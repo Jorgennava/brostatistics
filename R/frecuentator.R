@@ -37,12 +37,11 @@ frecuentator<- function(
   # if(length(new.packages)) install.packages(new.packages)
   require("survey")
   # #################################################
-  # # frecuentator(fTtabla=datos[datos$A3=="Sí (Bancarizado)" & datos[,miProducto]==TRUE,],fTvariables=misBancos,fTlevels=F,fbanner=bandera1)
-  # frecuentator(fTtabla = datos,fTvariables = "P19_E_1_A_la_Agencia",fTlevels = F)
-  # fTtabla<-datos
-  # fTvariables<-"P19_E_1_A_la_Agencia"
+  # frecuentator(fTtabla = datos[((datos$P10=="Ambas") & (datos$P20=="Si")),],fTvariables =(nombresR(datos,"P20_C_AMBOS")[1:4]),fTlevels = F,fbanner = bandera1)
+  # fTtabla<-datos[((datos$P10=="Ambas") & (datos$P20=="Si")),]
+  # fTvariables<-(nombresR(datos,"P20_C_AMBOS")[1:7])
   # fTlevels<-F
-  # fbanner <- NULL
+  # fbanner <- bandera1
   # fTponderador<-NULL
   # fTsobreQuien<- NULL
   # fTtotal<-T
@@ -140,7 +139,7 @@ frecuentator<- function(
         fTtabla[,fTvariables]<-as.logical(apply(X = subset(fTtabla,select = fTvariables),MARGIN = 2,FUN = as.character))
       }else{
         # Cuando uso datos desde un csv (i.e. no etiquetados) necesito convertirlos a logicos desce "numeric"
-        fTtabla[,fTvariables]<- apply(X = subset(fTtabla,select = fTvariables),MARGIN = 2,FUN = as.logical)
+        fTtabla[,fTvariables]<- sapply(X = subset(fTtabla,select = fTvariables),FUN = as.logical)
       }
       # sapply(X = fTtabla[,fTvariables],FUN = function(X){X[is.na(X)]<-F})
       fTtabla[is.na(fTtabla)]<-F
@@ -195,14 +194,14 @@ frecuentator<- function(
   }
 
   for(fi in 1:length(fbanner)){
-    # fi <- 2
+    # fi <- 1
     fbannerMini<- fbanner[fi]
     cat("\nProcesando Variable ",fbannerMini,"(",fi," de ",length(fbanner),"): ")
     # Me quedo con los levels (las respuestas de cada variable banner a evaluar)
     firespuestas<-levels(fTtabla[,fbannerMini])
     # Para cada respuesta i.e. level de la variable banner a evaluar...
     for(ft in 1: length(firespuestas)){
-      # ft <- 2
+      # ft <- 1
       # Cual es la respuesta que estoy evaluando...
       factual<-firespuestas[ft]
       cat("\n|| Calculando respuesta  ",factual,"(",ft," de ",length(firespuestas),")")

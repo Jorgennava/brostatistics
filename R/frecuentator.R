@@ -37,11 +37,29 @@ frecuentator<- function(
   # if(length(new.packages)) install.packages(new.packages)
   require("survey")
   # #################################################
-  # frecuentator(fTtabla = datos[((datos$P10=="Ambas") & (datos$P20=="Si")),],fTvariables =(nombresR(datos,"P20_C_AMBOS")[1:4]),fTlevels = F,fbanner = bandera1)
-  # fTtabla<-datos[((datos$P10=="Ambas") & (datos$P20=="Si")),]
-  # fTvariables<-(nombresR(datos,"P20_C_AMBOS")[1:7])
+  # wut <- frecuentator(fTtabla = datos[datos$P15_1_Celular==T,],fTvariables = c('P15_B_CELULAR_Hablar_por_tel_fono','P15_B_CELULAR_Mandar_mensajes',
+  #                                                                       'P15_B_CELULAR_Jugar','P15_B_CELULAR_O_r_m_sica',
+  #                                                                       'P15_B_CELULAR_Buscar__informaci_n','P15_B_CELULAR_Tomar_fotos',
+  #                                                                       'P15_B_CELULAR_Mandar_mails','P15_B_CELULAR_Hacer_pagos',
+  #                                                                       'P15_B_CELULAR_Ver__TV','P15_B_CELULAR_Ver_pel_culas',
+  #                                                                       'P15_B_CELULAR_Ver_videos','P15_B_CELULAR_Comprar_por_internet',
+  #                                                                       'P15_B_CELULAR_Banca_en_l_nea','P15_B_CELULAR_Entrar_a_redes_sociales',
+  #                                                                       'P15_B_CELULAR_Para_trabajar','P15_B_CELULAR_Para_leer',
+  #                                                                       'P15_B_CELULAR_Hacer_tareas___trabajos_____dd','P15_B_CELULAR_Otra__Especificar'),
+  #              fTlevels = F,fbanner = bandera)
+  # table(datos[datos$P15_1_Celular==T,"P15_B_CELULAR_Mandar_mensajes"])
+  # fTtabla<-datos[datos$P15_1_Celular==T,]
+  # fTvariables<-c('P15_B_CELULAR_Hablar_por_tel_fono','P15_B_CELULAR_Mandar_mensajes',
+  #                'P15_B_CELULAR_Jugar','P15_B_CELULAR_O_r_m_sica',
+  #                'P15_B_CELULAR_Buscar__informaci_n','P15_B_CELULAR_Tomar_fotos',
+  #                'P15_B_CELULAR_Mandar_mails','P15_B_CELULAR_Hacer_pagos',
+  #                'P15_B_CELULAR_Ver__TV','P15_B_CELULAR_Ver_pel_culas',
+  #                'P15_B_CELULAR_Ver_videos','P15_B_CELULAR_Comprar_por_internet',
+  #                'P15_B_CELULAR_Banca_en_l_nea','P15_B_CELULAR_Entrar_a_redes_sociales',
+  #                'P15_B_CELULAR_Para_trabajar','P15_B_CELULAR_Para_leer',
+  #                'P15_B_CELULAR_Hacer_tareas___trabajos_____dd','P15_B_CELULAR_Otra__Especificar')
   # fTlevels<-F
-  # fbanner <- bandera1
+  # fbanner <- NULL
   # fTponderador<-NULL
   # fTsobreQuien<- NULL
   # fTtotal<-T

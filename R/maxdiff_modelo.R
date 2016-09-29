@@ -140,11 +140,11 @@ maxdiffModelo<-function(datos,nItems,nBloques,nItemsPorBloque,estructura='gut'){
   set.seed(14561) # prefijo la semilla para tener reproducibilidad
   conteosIndividualesSinEmpates = conteosIndividuales + matrix(runif(n * nItems)/100000, n) #adding random numbers to break ties
   rankings = nItems + 1 - apply(conteosIndividualesSinEmpates,1,rank) #rankings
-  
+  sucio<-apply(rankings,1,table)
   
   
   if(is.list(sucio)){
-    sucio<-apply(rankings,1,table)
+
     limpio<-list()
     for(i in 1:length(sucio)){
       completo<-as.character(1:nItems)

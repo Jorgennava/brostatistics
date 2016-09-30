@@ -11,9 +11,6 @@
 
 
 
-
-
-
 maxdiffModelo<-function(datos,nItems,nBloques,nItemsPorBloque,estructura='gut'){
   
   #funciones---------------------------------------------------------------------------------------------------
@@ -36,15 +33,17 @@ maxdiffModelo<-function(datos,nItems,nBloques,nItemsPorBloque,estructura='gut'){
   
   #cambio la estructura
   m_cambio_estructura<-function(datos=datos,nBloques=nBloques,nItemsPorBloque){
-    a<-data.frame('a')
+    a<-data.frame(letters[1:nItemsPorBloque])
     b<-a
     for(i in 1:(nBloques*2-1)){
       b<-cbind(b,a)
     }
     names(b)<-paste0('b',1:(nBloques*2))
-    b<-b %>%
-      mutate_each(funs(as.character))
     b<-b[0,]
+    for(i in 1:(length(b)/2)){
+      levels(b[,(2*(i-1)+1)])<-names(datos)[(nItemsPorBloque*(i-1)+1):(nItemsPorBloque*(i-1)+nItemsPorBloque)]
+      levels(b[,(2*(i-1)+2)])<-names(datos)[(nItemsPorBloque*(i-1)+1):(nItemsPorBloque*(i-1)+nItemsPorBloque)]
+    }
     for(k in 1:nrow(datos)){
       for(i in 1:nBloques){
         for(j in 1:nItemsPorBloque){
@@ -66,7 +65,7 @@ maxdiffModelo<-function(datos,nItems,nBloques,nItemsPorBloque,estructura='gut'){
   m_obtiene_atributos<-function(datos){
     niveles<-NULL
     for(i in 1:length(datos)){
-      niveles<-c(niveles,unique(datos[,i]))
+      niveles<-c(niveles,unique(levels(datos[,i])))
     }
     niveles<-unique(niveles)
     niveles<-na.omit(niveles)
@@ -88,7 +87,7 @@ maxdiffModelo<-function(datos,nItems,nBloques,nItemsPorBloque,estructura='gut'){
     }
     z<- z %>%
       mutate_each(funs(as.numeric))
-    matcheo<-match(unique(matriz[,(1+(2*(bloque-1)))]),nombresItems)
+    matcheo<-match(levels(matriz[,(1+(2*(bloque-1)))]),nombresItems)
     for(i in 1:nrow(matriz)){
       z[i,matcheo]<-0
       matcheoMejor<-match(matriz[i,(1+(2*(bloque-1)))],nombresItems)
@@ -144,7 +143,6 @@ maxdiffModelo<-function(datos,nItems,nBloques,nItemsPorBloque,estructura='gut'){
   
   
   if(is.list(sucio)){
-
     limpio<-list()
     for(i in 1:length(sucio)){
       completo<-as.character(1:nItems)
@@ -168,7 +166,7 @@ maxdiffModelo<-function(datos,nItems,nBloques,nItemsPorBloque,estructura='gut'){
   #calculo los promedios de los rankings como sigue---
   rankingsPromedio = proporcionesRankings %*% (1:nItems)/100
   rankings =  rank(rankingsPromedio)
-  individualR<-cbind(scoreIndividual = rankingsPromedio, rankingIndividual = rankings)
+  individualR<-cbind(scoreIndividual = as.numeric(rankingsPromedio), rankingIndividual = rankings)
   individualR
   rownames(individualR)<-nombresItems
   #nRows = 90000 #no. de alternativas por bloque* 2*no. de bloques*no. de personas

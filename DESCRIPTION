@@ -3,7 +3,7 @@ Title: Statistics for bros
 Version: 0.0.0.9000
 Authors@R: person("All the", "bros", email = "pelishk@gmail.com", role = c("aut", "cre"))
 Description: Such manliness, very bros, wow.
-Depends: R (>= 3.2.2),plyr,dplyr,survey,AlgDesign,sjmisc,readxl,multcomp
+Depends: R (>= 3.2.2),plyr,dplyr,survey,AlgDesign,sjmisc,readxl,multcomp,mlogit
 Imports: dplyr
 License: GPL-2
 Encoding: UTF-8

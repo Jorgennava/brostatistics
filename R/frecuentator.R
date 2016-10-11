@@ -37,28 +37,12 @@ frecuentator<- function(
   # if(length(new.packages)) install.packages(new.packages)
   require("survey")
   # #################################################
-  # wut <- frecuentator(fTtabla = datos[datos$P15_1_Celular==T,],fTvariables = c('P15_B_CELULAR_Hablar_por_tel_fono','P15_B_CELULAR_Mandar_mensajes',
-  #                                                                       'P15_B_CELULAR_Jugar','P15_B_CELULAR_O_r_m_sica',
-  #                                                                       'P15_B_CELULAR_Buscar__informaci_n','P15_B_CELULAR_Tomar_fotos',
-  #                                                                       'P15_B_CELULAR_Mandar_mails','P15_B_CELULAR_Hacer_pagos',
-  #                                                                       'P15_B_CELULAR_Ver__TV','P15_B_CELULAR_Ver_pel_culas',
-  #                                                                       'P15_B_CELULAR_Ver_videos','P15_B_CELULAR_Comprar_por_internet',
-  #                                                                       'P15_B_CELULAR_Banca_en_l_nea','P15_B_CELULAR_Entrar_a_redes_sociales',
-  #                                                                       'P15_B_CELULAR_Para_trabajar','P15_B_CELULAR_Para_leer',
-  #                                                                       'P15_B_CELULAR_Hacer_tareas___trabajos_____dd','P15_B_CELULAR_Otra__Especificar'),
-  #              fTlevels = F,fbanner = bandera)
-  # table(datos[datos$P15_1_Celular==T,"P15_B_CELULAR_Mandar_mensajes"])
-  # fTtabla<-datos[datos$P15_1_Celular==T,]
-  # fTvariables<-c('P15_B_CELULAR_Hablar_por_tel_fono','P15_B_CELULAR_Mandar_mensajes',
-  #                'P15_B_CELULAR_Jugar','P15_B_CELULAR_O_r_m_sica',
-  #                'P15_B_CELULAR_Buscar__informaci_n','P15_B_CELULAR_Tomar_fotos',
-  #                'P15_B_CELULAR_Mandar_mails','P15_B_CELULAR_Hacer_pagos',
-  #                'P15_B_CELULAR_Ver__TV','P15_B_CELULAR_Ver_pel_culas',
-  #                'P15_B_CELULAR_Ver_videos','P15_B_CELULAR_Comprar_por_internet',
-  #                'P15_B_CELULAR_Banca_en_l_nea','P15_B_CELULAR_Entrar_a_redes_sociales',
-  #                'P15_B_CELULAR_Para_trabajar','P15_B_CELULAR_Para_leer',
-  #                'P15_B_CELULAR_Hacer_tareas___trabajos_____dd','P15_B_CELULAR_Otra__Especificar')
-  # fTlevels<-F
+  # frecuentator(fTtabla = datos[datos$tieneHijos=='Sí',],fTvariables = hijitosEdad,
+  #              fTlevels = T,fbanner = NULL)
+  # 
+  # fTtabla<-datos[datos$tieneHijos=='Sí',]
+  # fTvariables<-hijitosEdad
+  # fTlevels<-T
   # fbanner <- NULL
   # fTponderador<-NULL
   # fTsobreQuien<- NULL
@@ -199,12 +183,12 @@ frecuentator<- function(
     FINAL[nrow(FINAL)+1,"Respuesta"] <- "Total"
     # }
     row.names(FINAL) <- FINAL$Respuesta
-    cat("\n\n\n\n\n\n\n\n INICIO PROCESO \n\n",
-        "\nVariables: ",fTvariables,
-        "\nBanner: ",fbanner,
-        "\nTiempo: ",as.character(Sys.time()),
-        "\n"
-    )
+    # cat("\n\n\n\n\n\n\n\n INICIO PROCESO \n\n",
+    #     "\nVariables: ",fTvariables,
+    #     "\nBanner: ",fbanner,
+    #     "\nTiempo: ",as.character(Sys.time()),
+    #     "\n"
+    # )
   }else{
     FINAL<-data.frame(Respuesta=fTvariables,stringsAsFactors = F)
     FINAL[nrow(FINAL)+1,"Respuesta"] <- "Total"
@@ -228,7 +212,7 @@ frecuentator<- function(
       final<-data.frame()
       ################################################# Frecuencia
       for(zi in 1:length(fTvariables)){
-        # zi <-1
+        # zi <-5
         sub<-suba[!is.na(suba[,fTvariables[zi]]),]
         if(nrow(sub)<=1){
           # Tengo un solo caso, no puedo ponderaro (sin sentido)
@@ -267,7 +251,7 @@ frecuentator<- function(
           if(nrow(final)!=0){
             names(final)<-c("total","SE")
           }
-          final$total <- final$SE
+          # final$total <- final$SE
         }else{
           # Pondero todos mis resultados
           z<- svydesign(data = sub,ids =~1, weights = sub[,fTponderador])

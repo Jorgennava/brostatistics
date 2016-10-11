@@ -98,6 +98,21 @@ maxdiffModelo<-function(datos,nItems,nBloques,nItemsPorBloque,estructura='gut'){
     return(z)
   }
   
+  #función que checa duplicados--------------------------------------------
+  
+  
+  checadorDeRespuestasIguales<-function(datos){
+    alerta<-0  
+    for(i in 1:nrow(datos)){
+      for(j in 1:(length(datos)/2)){
+        if(datos[i,(2*(j-1)+1)]==datos[i,(2*(j-1)+2)]){
+          alerta<-c(i,j)
+        }
+      }
+    }
+    return(alerta)
+  }
+  
   
   
   
@@ -114,6 +129,13 @@ maxdiffModelo<-function(datos,nItems,nBloques,nItemsPorBloque,estructura='gut'){
   #de aquí en adelante la estructura ya está unificada
   #creo el objeto z
   datos<-na.omit(datos)
+  #checador de respuestas duplicadas
+  alertaMismaRespuesta<-checadorDeRespuestasIguales(datos)
+  
+  if(alertaMismaRespuesta[1]>0){
+    stop(paste0('el wey número ',alertaMismaRespuesta[1],' eligió el mismo atributo en la batería ',alertaMismaRespuesta[2]))
+  }
+  
   nombresItems<-m_obtiene_atributos(datos)
   bloques<-list()
   for(i in 1:nBloques){

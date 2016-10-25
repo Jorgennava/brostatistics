@@ -29,5 +29,13 @@ funcionNormalizacion<-function(conteos,totales){
     conteosDiferencia[,i]<-conteosDiferencia[,i]/totales[i]
   }
   conteosDiferencia<-round(conteosDiferencia*100,2)
-  return(conteosDiferencia)
-}
+  
+  estandarizados <- conteosDiferencia
+  for(i in 1:length(conteosDiferencia)){
+      estandarizados[,i]<-scale(conteosDiferencia[,i])
+  }
+  
+  resultados <- cbind(conteosDiferencia,estandarizados)
+  return(resultados)
+  
+  }

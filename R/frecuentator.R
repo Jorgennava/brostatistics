@@ -42,10 +42,10 @@ frecuentator<- function(
   #                                              'sh6','sh7','ay1',
   #                                              'ay2','ay3','ay4',
   #                                              'ay5','ay6','ay7'),
-  #              fTlevels = T,fbanner = NULL,
+  #              fTlevels = T,fbanner = bandera,
   #              fTponderador = 'ponderador',fTprop = T)
   # 
-  # # 
+  # #
   # fTtabla<-datos
   # fTvariables<-c('tom','sh1','sh2',
   #                'sh3','sh4','sh5',
@@ -353,18 +353,18 @@ frecuentator<- function(
             # spw<-1
             #Sólo cuando estoy evaluando diferentes columnas
             if(spt!=spw){
-              objetivo<-final[spi,spt]
-              objetivoTotal<-final[nrow(final),spt]
-              competidor<-final[spi,spw]
-              competidorTotal<-final[nrow(final),spw]
+              objetivo<-round(final[spi,spt],0)
+              objetivoTotal<-round(final[nrow(final),spt],0)
+              competidor<-round(final[spi,spw],0)
+              competidorTotal<-round(final[nrow(final),spw],0)
               if(objetivo>0 & competidor>0 & objetivo!=objetivoTotal & competidor != competidorTotal){
                 if(prop.test(
                   # Exitos
                   x = c(
-                    round(objetivo,0), round(competidor,0)
+                    objetivo, competidor
                   ),
                   n = c(
-                    round(objetivoTotal,0),round(competidorTotal,0)
+                    objetivoTotal,competidorTotal
                   ),
                   alternative = "greater",
                   correct = T

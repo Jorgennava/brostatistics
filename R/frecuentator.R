@@ -37,17 +37,27 @@ frecuentator<- function(
   # if(length(new.packages)) install.packages(new.packages)
   require("survey")
   # #################################################
-  # frecuentator(fTtabla = datos[datos$tieneHijos=='Sí',],fTvariables = hijitosEdad,
-  #              fTlevels = T,fbanner = NULL)
+  # frecuentator(fTtabla = datos,fTvariables = c('tom','sh1','sh2',
+  #                                              'sh3','sh4','sh5',
+  #                                              'sh6','sh7','ay1',
+  #                                              'ay2','ay3','ay4',
+  #                                              'ay5','ay6','ay7'),
+  #              fTlevels = T,fbanner = NULL,
+  #              fTponderador = 'ponderador',fTprop = T)
   # 
-  # fTtabla<-datos[datos$tieneHijos=='Sí',]
-  # fTvariables<-hijitosEdad
+  # # 
+  # fTtabla<-datos
+  # fTvariables<-c('tom','sh1','sh2',
+  #                'sh3','sh4','sh5',
+  #                'sh6','sh7','ay1',
+  #                'ay2','ay3','ay4',
+  #                'ay5','ay6','ay7')
   # fTlevels<-T
-  # fbanner <- NULL
-  # fTponderador<-NULL
+  # fbanner <- bandera
+  # fTponderador<-'ponderador'
   # fTsobreQuien<- NULL
   # fTtotal<-T
-  # fTprop<-F
+  # fTprop<-T
   # # #
   # # ############## truquitos
   # #   fTvariables<-c("NSE")
@@ -333,7 +343,7 @@ frecuentator<- function(
       tablaSPMirror <- final
       for(spi in 1:(nrow(final)-1)){
         # Voy por el primer row
-        # spi<-2
+        # spi<-1
         tablaSPMirror[spi,] <- ""
         for(spt in 1:length(final)){
           # Voy por cada columna...
@@ -351,10 +361,10 @@ frecuentator<- function(
                 if(prop.test(
                   # Exitos
                   x = c(
-                    objetivo, competidor
+                    round(objetivo,0), round(competidor,0)
                   ),
                   n = c(
-                    objetivoTotal,competidorTotal
+                    round(objetivoTotal,0),round(competidorTotal,0)
                   ),
                   alternative = "greater",
                   correct = T

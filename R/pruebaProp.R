@@ -6,27 +6,30 @@
 #'La última fila del data frame debe ser el "Total" (de ahí obtiene n el prop.test)
 #'@param tablaProp La tabla principal
 #'@param simboloPct Los datos tienen simbolo de porcentaje?  A veces al leer un .csv viene el símbolo de porcentaje
+#'@param echo Mantener los datos originales?
 #'@export
 #'@keywords prop
 #'@examples pruebaProp(data.frame(nombres=c("Uno","Dos","Total"),Variable1=c(sample(1:200,1),sample(1:200,1),sample(201:400,1)),Variable2=c(sample(1:200,1),sample(1:200,1), sample(201:400,1))))
 #'@examples pruebaProp(data.frame(nombres=c("Uno","Dos","Total"),Variable1=c(paste(sample(1:100,1),"%",sep=""),paste(sample(1:100,1),"%",sep=""),sample(1:400,1)),Variable2=c(paste(sample(1:100,1),"%",sep=""),paste(sample(1:100,1),"%",sep=""), sample(1:400,1))),simboloPct=T)
 #'@examples pruebaProp(data.frame(nombres=c("Uno","Dos","Total"),Variable1=c(paste(sample(1:100,1),"%",sep=""),paste(sample(1:100,1),"%",sep=""),"100%"),Variable2=c(paste(sample(1:100,1),"%",sep=""),paste(sample(1:100,1),"%",sep=""), "100%")),simboloPct=T)
+#'@examples pruebaProp(data.frame(nombres=c("Uno","Dos","Total"),Variable1=c(paste(sample(1:100,1),"%",sep=""),paste(sample(1:100,1),"%",sep=""),"100%"),Variable2=c(paste(sample(1:100,1),"%",sep=""),paste(sample(1:100,1),"%",sep=""), "100%")),simboloPct=T,echo=T)
 
 pruebaProp <- function(
   # La tabla de datos....
   # La primera columna es la respuesta
   # La última fila debe ser la del total
   tablaProp,
-  simboloPct=F
+  simboloPct=F,
+  echo=F
 ){
 
   # consigueProp(tablaProp = listado[[i]],simboloPct = T)
   #
   # tablaProp <- data.frame(nombres=c("Uno","Dos","Total"),Variable1=c(sample(1:400,1),sample(1:400,1),sample(1:400,1)),Variable2=c(sample(1:400,1),sample(1:400,1), sample(1:400,1)))
   # tablaProp <- data.frame(nombres=c("Uno","Dos","Total"),Variable1=c(paste(sample(1:100,1),"%",sep=""),paste(sample(1:100,1),"%",sep=""),sample(1:400,1)),Variable2=c(paste(sample(1:100,1),"%",sep=""),paste(sample(1:100,1),"%",sep=""), sample(1:400,1)))
-  # simboloPct <- T
+  # simboloPct <- F
   # tablaProp <- testin
-
+# echo=T
   ################################################# Supuestos...
 
   # Mi primer columna, es texto
@@ -49,8 +52,10 @@ pruebaProp <- function(
 
   for(spi in 1:(nrow(final)-1)){
     # Voy por el primer row
-    # spi<-2
-    tablaSPMirror[spi,] <- ""
+    # spi<-1
+    if(!echo){
+      tablaSPMirror[spi,] <- ""
+    }
     for(spt in 1:length(final)){
       # Voy por cada columna...
       # spt<-3

@@ -18,7 +18,7 @@ maxdiffModelo(datos, nItems, nBloques, nItemsPorBloque, estructura = "gut")
 \item{estructura}{default es "gut" cuando viene bien y debe asignarse "fuchi" si viene como en la de Jorge (preguntar a Jorge en caso de duda)}
 }
 \description{
-Calcula los modelos de conteos globales e individuales, así como un modelo logit global
+Calcula los modelos de conteos globales e individuales, así como un modelo logit global, es recomenable ejecutar un na.omit() antes de correr el código.
 }
 \keyword{conteos}
 \keyword{logit}

@@ -17,7 +17,7 @@ maxdiffModelo<-function(datos,nItems,nBloques,nItemsPorBloque,estructura='gut'){
   
   #análisis de conteos
   
-  
+  require(mlogit)
   
   
   
@@ -128,7 +128,6 @@ maxdiffModelo<-function(datos,nItems,nBloques,nItemsPorBloque,estructura='gut'){
   
   #de aquí en adelante la estructura ya está unificada
   #creo el objeto z
-  datos<-na.omit(datos)
   #checador de respuestas duplicadas
   alertaMismaRespuesta<-checadorDeRespuestasIguales(datos)
   

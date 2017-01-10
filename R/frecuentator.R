@@ -230,7 +230,8 @@ frecuentator<- function(
             # Estoy trabajando con nominales
             a<-as.data.frame(table(sub[,fTvariables[zi]]))
             row.names(a)<- a$Var1
-            a$Var1<-a$Freq
+            a$Var1<-sum(suba[,fTponderador])
+            # a$Var1<-a$Freq
             names(a)<-c("total","SE")
             if(nrow(final)==0){
               final<-a

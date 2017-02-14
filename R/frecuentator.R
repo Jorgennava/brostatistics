@@ -288,7 +288,7 @@ frecuentator<- function(
         }
         if(is.null(fTsobreQuien)){
           # No se especificó el número que va en total e.g. 'la base'
-          sobreQuienFinal<- sum(suba[,fTponderador])
+          sobreQuienFinal<- sum(sub[,fTponderador])
         }else{
           sobreQuienFinal<- fTsobreQuien
         }

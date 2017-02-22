@@ -19,4 +19,3 @@ nombresR(iris,"Sep")
 nombresR(iris,"Sepal.Len")
 }
 \keyword{nombres}
-

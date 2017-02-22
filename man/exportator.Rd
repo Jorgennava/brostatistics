@@ -18,4 +18,3 @@ Función auxiliar para exportar los resultados generados con frecuentator. Recib
 exportator("resultados","./resultados/resultados.csv")
 }
 \keyword{exportar}
-

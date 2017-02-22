@@ -2,14 +2,17 @@
 % Please edit documentation in R/pruebaProp.R
 \name{pruebaProp}
 \alias{pruebaProp}
-\title{Realiza prueba de proporciones sobre un data frame (una tabla) que sea un recuento o porcentaje de frecuencia}
+\title{Realiza prueba de proporciones sobre un data frame (una tabla) que sea un recuento o porcentaje de frecuencia. NECESITA UNA FILA DE "Total"
+En total debe ir el tamaño de -la base-. Revisar ejemplos para que sea más claro.}
 \usage{
-pruebaProp(tablaProp, simboloPct = F)
+pruebaProp(tablaProp, simboloPct = F, echo = F)
 }
 \arguments{
 \item{tablaProp}{La tabla principal}
 
 \item{simboloPct}{Los datos tienen simbolo de porcentaje?  A veces al leer un .csv viene el símbolo de porcentaje}
+
+\item{echo}{Mantener los datos originales?}
 }
 \description{
 Realiza un prop.test con hipótesis alternativa "mayor qué" sobre un data frame tal que sea un resultado de frecuencias.
@@ -17,7 +20,9 @@ La primera columna de la tabla (tabla[,1]) debe ser de las respuestas de la frec
 La última fila del data frame debe ser el "Total" (de ahí obtiene n el prop.test)
 }
 \examples{
-pruebaProp(data.frame(nombres=c("Uno","Dos"),Variable1=c(48,100),Variable2=c(16,100)))
+pruebaProp(data.frame(nombres=c("Uno","Dos","Total"),Variable1=c(sample(1:200,1),sample(1:200,1),sample(201:400,1)),Variable2=c(sample(1:200,1),sample(1:200,1), sample(201:400,1))))
+pruebaProp(data.frame(nombres=c("Uno","Dos","Total"),Variable1=c(paste(sample(1:100,1),"\%",sep=""),paste(sample(1:100,1),"\%",sep=""),sample(1:400,1)),Variable2=c(paste(sample(1:100,1),"\%",sep=""),paste(sample(1:100,1),"\%",sep=""), sample(1:400,1))),simboloPct=T)
+pruebaProp(data.frame(nombres=c("Uno","Dos","Total"),Variable1=c(paste(sample(1:100,1),"\%",sep=""),paste(sample(1:100,1),"\%",sep=""),"100\%"),Variable2=c(paste(sample(1:100,1),"\%",sep=""),paste(sample(1:100,1),"\%",sep=""), "100\%")),simboloPct=T)
+pruebaProp(data.frame(nombres=c("Uno","Dos","Total"),Variable1=c(paste(sample(1:100,1),"\%",sep=""),paste(sample(1:100,1),"\%",sep=""),"100\%"),Variable2=c(paste(sample(1:100,1),"\%",sep=""),paste(sample(1:100,1),"\%",sep=""), "100\%")),simboloPct=T,echo=T)
 }
 \keyword{prop}
-

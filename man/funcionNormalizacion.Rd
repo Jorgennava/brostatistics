@@ -19,4 +19,3 @@ load(conteosYtotales)
 funcionNormalizacion(resultados[[1]],resultados[[2]])
 }
 \keyword{normalizacion}
-

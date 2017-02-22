@@ -26,4 +26,3 @@ todas las respuestas en un vector gigante, limpiar ese vector, y despues clonar 
 exportarAbiertas(nombresR(datos,"P5"),"./abiertas/finalP5.csv")
 }
 \keyword{abiertas}
-

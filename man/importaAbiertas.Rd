@@ -29,4 +29,3 @@ importarAbiertas(misDatos = datos,misVaria = nombresR(datos,"P5"),
 micatalog = read.csv("./abiertas/finalP5.csv"),misVariablesFinales = "Total")
 }
 \keyword{abiertas}
-

@@ -42,4 +42,3 @@ resultado<-funcionTablaConteos(marcas=marcas,
 \keyword{conteos}
 \keyword{tabla}
 \keyword{tabladeconteos}
-

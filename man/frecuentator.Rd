@@ -5,7 +5,8 @@
 \title{Función para frecuencias y pruebas de proporciones}
 \usage{
 frecuentator(fTtabla, fTvariables, fTlevels = T, fbanner = NULL,
-  fTponderador = NULL, fTsobreQuien = NULL, fTtotal = T, fTprop = F)
+  fTponderador = NULL, fTsobreQuien = NULL, fTtotal = T, fTprop = F,
+  fTusarNA = F)
 }
 \arguments{
 \item{fTtabla}{La tabla principal i.e. "la base de datos"}
@@ -23,6 +24,8 @@ frecuentator(fTtabla, fTvariables, fTlevels = T, fbanner = NULL,
 \item{fTtotal}{Agregar una fila de total en los resultados finales?}
 
 \item{fTprop}{Hacer prueba de proporciones? En vez de regresar la tabla de frecuencias se regresa una tabla de prueba de proporciones (igual a las de SPSS)}
+
+\item{fTusarNA}{Cuando por alguna razon mágica necesitemos usar los NA en la frecuencia de una tabal, ponemos true a esto}
 }
 \description{
 Esta función obtiene frecuencias, ponderadas o no, y pruebas de proporciones para tablas tipo encuesta. La funcion necesita el paquete survey.
@@ -31,4 +34,3 @@ Esta función obtiene frecuencias, ponderadas o no, y pruebas de proporciones pa
 frecuentator(fTtabla = iris,fTvariables = "Species",fTlevels = T,fbanner = "Species")
 }
 \keyword{frecuencias}
-

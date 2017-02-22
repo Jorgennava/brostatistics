@@ -25,4 +25,3 @@ combinaciones
 }
 \keyword{combinaciones}
 \keyword{maxdiff}
-

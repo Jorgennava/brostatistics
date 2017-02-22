@@ -9,6 +9,7 @@
 #'@param fTsobreQuien Fijar un total para todos los cálculos de porcentaje
 #'@param fTtotal Agregar una fila de total en los resultados finales?
 #'@param fTprop Hacer prueba de proporciones? En vez de regresar la tabla de frecuencias se regresa una tabla de prueba de proporciones (igual a las de SPSS)
+#'@param fTusarNA Cuando por alguna razon mágica necesitemos usar los NA en la frecuencia de una tabal, ponemos true a esto
 #'@export
 #'@keywords frecuencias
 #'@examples
@@ -30,7 +31,9 @@ frecuentator<- function(
   #Agregar una fila de total?
   fTtotal=T,
   #Hago prueba de proporciones?
-  fTprop=F
+  fTprop=F,
+  #Utilizo los NA en el cálculo de porcentajes?
+  fTusarNA=F
 ){
   # list.of.packages <- c("survey")
   # new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
@@ -287,8 +290,12 @@ frecuentator<- function(
           }
         }
         if(is.null(fTsobreQuien)){
-          # No se especificó el número que va en total e.g. 'la base'
-          sobreQuienFinal<- sum(sub[,fTponderador])
+          # Por default calcula porcentajes sobre el total de casos válidos, en caso contrario, utiliza el recuento de la base
+	  if(fTusarNA==T){
+		sobreQuienFinal<- sum(suba[,fTponderador])
+		}else{
+		sobreQuienFinal<- sum(sub[,fTponderador])
+		}
         }else{
           sobreQuienFinal<- fTsobreQuien
         }

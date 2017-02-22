@@ -6,7 +6,7 @@
 #'@export
 #'@keywords spss
 
-creaSyntaxSPSS<- function(sPath, SFile){
+creaSyntaxSPSS<- function(sPath, sFile){
   # sPath <- "~/Descargas/U&A Seguros V2_DataMap_22-02-2017 15_59_05.xlsx"
   # sFile <- "~/Descargas/magic.sps"
 

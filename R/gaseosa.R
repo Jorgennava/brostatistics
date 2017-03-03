@@ -50,7 +50,7 @@ gaseosa <- function(xfile, yfile){
       tr <- as.character(misEtiquetas$Type)
       # 
       if(tr=="NUMERIC"){
-        subdatosgs[,1] <- as.numeric(subdatosgs[,1])
+        subdatosgs[,1] <- as.factor(as.character(subdatosgs[,1]))
       }else if(tr=="TEXT"){
         subdatosgs[,1] <- as.character(subdatosgs[,1])
       }else if(tr=="DATE"){

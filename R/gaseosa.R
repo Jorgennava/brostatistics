@@ -52,9 +52,9 @@ gaseosa <- function(xfile, yfile){
       if(tr=="NUMERIC"){
         subdatosgs[,1] <- as.factor(as.character(subdatosgs[,1]))
       }else if(tr=="TEXT"){
-        subdatosgs[,1] <- as.character(subdatosgs[,1])
+        subdatosgs[,1] <- as.factor(as.character(subdatosgs[,1]))
       }else if(tr=="DATE"){
-        subdatosgs[,1] <- as.character(subdatosgs[,1])
+        subdatosgs[,1] <- as.factor(as.character(subdatosgs[,1]))
       }else if(tr=="CATEGORICAL"){
         miVector <- as.character(unlist(misEtiquetasVariable[,3]))
         names(miVector) <- as.numeric(unlist(misEtiquetasVariable[,2]))

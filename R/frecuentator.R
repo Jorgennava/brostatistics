@@ -9,7 +9,8 @@
 #'@param fTsobreQuien Fijar un total para todos los cálculos de porcentaje
 #'@param fTtotal Agregar una fila de total en los resultados finales?
 #'@param fTprop Hacer prueba de proporciones? En vez de regresar la tabla de frecuencias se regresa una tabla de prueba de proporciones (igual a las de SPSS)
-#'@param fTusarNA Cuando por alguna razon mágica necesitemos usar los NA en la frecuencia de una tabal, ponemos true a esto
+#'@param fTusarNA Frecuentator omite por default los NA de las variables que le pedimos, pero a veces se necesitan i.e. Cuando agrupo variables para Share of Mind
+#'@param fTdecimales El redondeo de porcentaje a cuantos decimales debe ser? El default es 1
 #'@export
 #'@keywords frecuencias
 #'@examples
@@ -33,7 +34,9 @@ frecuentator<- function(
   #Hago prueba de proporciones?
   fTprop=F,
   #Utilizo los NA en el cálculo de porcentajes?
-  fTusarNA=F
+  fTusarNA=F,
+  #Cuantos decimales al momento de redondear los porcentajes?
+  fTdecimales=1,
 ){
   # list.of.packages <- c("survey")
   # new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
@@ -306,7 +309,7 @@ frecuentator<- function(
       final<-data.frame(
         respuesta=row.names(final),
         f=final$total,
-        pct=round(final$total/sobreQuienFinal*100,1)
+        pct=round(final$total/sobreQuienFinal*100,fTdecimales)
       )
       row.names(final) <- final$respuesta
       final <- final[,-1]

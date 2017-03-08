@@ -210,11 +210,13 @@ frecuentator<- function(
     FINAL[nrow(FINAL)+1,"Respuesta"] <- "Total"
     row.names(FINAL) <- FINAL$Respuesta
   }
-
+  cat("\n Consiguiendo frecuencias...")
+  pb <- txtProgressBar(min = 0, max = length(fbanner), style = 3)
   for(fi in 1:length(fbanner)){
     # fi <- 1
+    setTxtProgressBar(pb, fi)
     fbannerMini<- fbanner[fi]
-    cat("\nProcesando Variable ",fbannerMini,"(",fi," de ",length(fbanner),"): ")
+    # cat("\nProcesando Variable ",fbannerMini,"(",fi," de ",length(fbanner),"): ")
     # Me quedo con los levels (las respuestas de cada variable banner a evaluar)
     firespuestas<-levels(fTtabla[,fbannerMini])
     # Para cada respuesta i.e. level de la variable banner a evaluar...
@@ -222,7 +224,7 @@ frecuentator<- function(
       # ft <- 1
       # Cual es la respuesta que estoy evaluando...
       factual<-firespuestas[ft]
-      cat("\n|| Calculando respuesta  ",factual,"(",ft," de ",length(firespuestas),")")
+      # cat("\n|| Calculando respuesta  ",factual,"(",ft," de ",length(firespuestas),")")
       # Subseteo a ftabla
       suba<-fTtabla[fTtabla[,fbannerMini]==factual & !is.na(fTtabla[,fbannerMini]),]
       final<-data.frame()
@@ -329,13 +331,13 @@ frecuentator<- function(
           row.names(final) <- row.names(FINAL)
         }
       }
-      cat(paste("...FYI, nrow=",nrow(FINAL)))
+      # cat(paste("...FYI, nrow=",nrow(FINAL)))
       FINAL <- merge(FINAL, final,0)
       row.names(FINAL) <- FINAL$Row.names
       FINAL <- FINAL[,-1]
     }
   }
-
+  close(pb)
   if(fTlevels){
     FINAL <- FINAL[match(c(levels(fTtabla[,fTvariables[1]]),"Total"),row.names(FINAL)),]
   }else{
@@ -344,11 +346,14 @@ frecuentator<- function(
   if(fTprop){
     # Obtener prueba de proporciones...
     FINALmirror<- data.frame(Respuesta=FINAL$Respuesta)
+    cat("\n Consiguiendo pruebas de prop...")
+    pb <- txtProgressBar(min = 0, max = length(fbanner), style = 3)
     for(pi in 1:length(fbanner)){
       # pi <- 1
+      setTxtProgressBar(pb, fi)
       final<-FINAL
       fbannerMini<- fbanner[pi]
-      cat("\nProcesando prop.test de Variable ",fbannerMini,"(",pi," de ",length(fbanner),"): ")
+      # cat("\nProcesando prop.test de Variable ",fbannerMini,"(",pi," de ",length(fbanner),"): ")
       firespuestas<-levels(fTtabla[,fbannerMini])
       final <- subset(final,select = grep(pattern = fbannerMini,x = names(final)))
       final <- subset(final,select = grep(pattern = "_f",x = names(final)))
@@ -395,5 +400,6 @@ frecuentator<- function(
     }
     return(FINALmirror)
   }
+  close(pb)
   return(FINAL)
 }

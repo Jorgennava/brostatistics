@@ -36,7 +36,7 @@ frecuentator<- function(
   #Utilizo los NA en el cálculo de porcentajes?
   fTusarNA=F,
   #Cuantos decimales al momento de redondear los porcentajes?
-  fTdecimales=1,
+  fTdecimales=1
 ){
   # list.of.packages <- c("survey")
   # new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]

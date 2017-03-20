@@ -8,8 +8,8 @@
 
 exportator <- function(reporteF, nombreFinal){
   # exportator(resultados, "resultados.csv")
-  # reporteF <- resultados
-  # nombreFinal <- "resultados.csv"
+  reporteF <- bannervsbanner
+  nombreFinal <- "resultados.csv"
   reporteFINAL <- data.frame()
   for(finali in 1:length(reporteF)){
     # finali <- 1
@@ -17,13 +17,31 @@ exportator <- function(reporteF, nombreFinal){
     
     elTemporal <- rbind(names(elTemporal),elTemporal)
     
+    #Hago un data frame chiquito con los titulos correctos
+    titulos <- names(elTemporal)
+    titulosF <- NULL
+    for(t in 1:length(titulos)){
+      # t <- 8
+      minititulo <- unlist(strsplit(x = titulos[t],split = ":::"))
+      while(length(minititulo)<3){
+        minititulo <- c(minititulo,minititulo[1])
+      }
+      titulosF <- cbind(titulosF,minititulo)
+    }
+    titulosF <- as.data.frame(titulosF,stringsAsFactors = F)
+    
     names(elTemporal) <- paste(LETTERS[1:length(elTemporal)],1:length(elTemporal),sep="")
+    names(titulosF) <- paste(LETTERS[1:length(titulosF)],1:length(titulosF),sep="")
     
-    elTemporal[1,1] <- names(reporteF)[finali]
+    # elTemporal[1,1] <- names(reporteF)[finali]
+    titulosF[2,1] <- names(reporteF)[finali]
+    titulosF[1,1] <- ""
     
-    salto <- elTemporal[0,]
+    elTemporal <- rbind(titulosF,elTemporal[-1,],NA)
     
-    elTemporal <- rbind(elTemporal,NA)
+    # Voy a eliminar las columnas que dicen false en el row 2
+    
+    elTemporal <- elTemporal[,!elTemporal[2,] %in% "FALSE"]
     
     reporteFINAL <- plyr::rbind.fill(reporteFINAL,elTemporal)
     

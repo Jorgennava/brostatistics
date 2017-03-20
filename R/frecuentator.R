@@ -316,7 +316,7 @@ frecuentator<- function(
       row.names(final) <- final$respuesta
       final <- final[,-1]
       ################################################# Frecuencia
-      names(final) <- paste(fbannerMini, factual,names(final),sep="_")
+      names(final) <- paste(fbannerMini, factual,names(final),sep=":::")
       if(nrow(final)==1){
         if(final[,1]==0){
           # No tenía casos... ._.

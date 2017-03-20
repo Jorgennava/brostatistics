@@ -10,7 +10,7 @@ exportator <- function(reporteF, nombreFinal){
   # exportator(resultados, "resultados.csv")
   # reporteF <- bannervsbanner
   # nombreFinal <- "resultados.csv"
-  # reporteFINAL <- data.frame()
+  reporteFINAL <- data.frame()
   for(finali in 1:length(reporteF)){
     # finali <- 1
     elTemporal <- reporteF[[finali]]

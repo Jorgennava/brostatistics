@@ -368,14 +368,14 @@ frecuentator<- function(
           # for(spw in (1:length(final))[!1:length(final) %in% spt]){
           for(spw in 1:length(final)){
             # spw<-1
-            if(objetivo>objetivoTotal){objetivo <- objetivoTotal}
-            if(competidor>competidorTotal){competidor <- competidorTotal}
             #Sólo cuando estoy evaluando diferentes columnas
             if(spt!=spw){
               objetivo<-round(final[spi,spt],0)
               objetivoTotal<-round(final[nrow(final),spt],0)
               competidor<-round(final[spi,spw],0)
               competidorTotal<-round(final[nrow(final),spw],0)
+              if(objetivo>objetivoTotal){objetivo <- objetivoTotal}
+              if(competidor>competidorTotal){competidor <- competidorTotal}
               if(objetivo>0 & competidor>0 & objetivo!=objetivoTotal & competidor != competidorTotal){
                 if(prop.test(
                   # Exitos

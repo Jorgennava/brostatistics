@@ -356,7 +356,7 @@ frecuentator<- function(
       # cat("\nProcesando prop.test de Variable ",fbannerMini,"(",pi," de ",length(fbanner),"): ")
       firespuestas<-levels(fTtabla[,fbannerMini])
       final <- subset(final,select = grep(pattern = fbannerMini,x = names(final)))
-      final <- subset(final,select = grep(pattern = "_f",x = names(final)))
+      final <- subset(final,select = grep(pattern = ":::f",x = names(final)))
       tablaSPMirror <- final
       for(spi in 1:(nrow(final)-1)){
         # Voy por el primer row

@@ -41,7 +41,6 @@ frecuentator<- function(
   # list.of.packages <- c("survey")
   # new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
   # if(length(new.packages)) install.packages(new.packages)
-  require("survey")
   # #################################################
   # frecuentator(fTtabla = datos,fTvariables = c('tom','sh1','sh2',
   #                                              'sh3','sh4','sh5',
@@ -125,7 +124,8 @@ frecuentator<- function(
     }
   }
   if(length(fTvariables)==0){
-    stop(paste("\n frecuentator Error04: Se han omitido todas las variables del análisis porque estaban vacias, frecuencia no tiene sentido"))
+    warning("\n frecuentator Error04: Se han omitido todas las variables del análisis porque estaban vacias, frecuencia no tiene sentido")
+    return(data.frame(vacio="sin casos"))
   }
   # Pruebo fTlevels
   # Requiero que, si fTlevels=T, entonces todas las variables deben tener levels
@@ -274,11 +274,11 @@ frecuentator<- function(
           # final$total <- final$SE
         }else{
           # Pondero todos mis resultados
-          z<- svydesign(data = sub,ids =~1, weights = sub[,fTponderador])
+          z<- survey::svydesign(data = sub,ids =~1, weights = sub[,fTponderador])
           # Estoy trabajando con lógicos? i.e. cómo voy a juntar las variables?
           if(fTlevels){
             # Estoy trabajando con nominales
-            a<-data.frame(svytotal(as.formula(paste("~",fTvariables[zi],sep="")),z,na.rm=T))
+            a<-data.frame(survey::svytotal(as.formula(paste("~",fTvariables[zi],sep="")),z,na.rm=T))
             if(nrow(final)==0){
               final<-a
             }else{
@@ -288,7 +288,7 @@ frecuentator<- function(
           }else{
             # Estoy trabajando con lógicos
             # zi <- 1
-            a<-data.frame(svytotal(as.formula(paste("~",fTvariables[zi],sep="")),z,na.rm=T))[2,]
+            a<-data.frame(survey::svytotal(as.formula(paste("~",fTvariables[zi],sep="")),z,na.rm=T))[2,]
             ### Cuanto quieras quitar el "TRUE" de las respuestas, quita el comment a esto...
             row.names(a) <- fTvariables[zi]
             final<-rbind(final,a)

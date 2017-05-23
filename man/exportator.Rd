@@ -4,12 +4,14 @@
 \alias{exportator}
 \title{Función auxiliar para exportar los resultados generados con frecuentator. Recibe una lista y exporta todas las tablas en un csv}
 \usage{
-exportator(reporteF, nombreFinal)
+exportator(reporteF, nombreFinal, pMacro = F)
 }
 \arguments{
 \item{reporteF}{La lista que tiene los resultados de frecuentator}
 
 \item{nombreFinal}{El nombre final del .csv a exportar}
+
+\item{pMacro}{Si quieres el formato para Macro, poner TRUE aqui}
 }
 \description{
 Función auxiliar para exportar los resultados generados con frecuentator. Recibe una lista y exporta todas las tablas en un csv

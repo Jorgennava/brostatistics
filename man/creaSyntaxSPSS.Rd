@@ -4,7 +4,7 @@
 \alias{creaSyntaxSPSS}
 \title{Función para crear un syntax de spss desde un datamap generado por soda}
 \usage{
-creaSyntaxSPSS(sPath, SFile)
+creaSyntaxSPSS(sPath, sFile)
 }
 \arguments{
 \item{sPath}{El archivo descargado de soda, un "dataMap"}

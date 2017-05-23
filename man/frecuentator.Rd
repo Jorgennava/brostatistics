@@ -6,7 +6,7 @@
 \usage{
 frecuentator(fTtabla, fTvariables, fTlevels = T, fbanner = NULL,
   fTponderador = NULL, fTsobreQuien = NULL, fTtotal = T, fTprop = F,
-  fTusarNA = F)
+  fTusarNA = F, fTdecimales = 1)
 }
 \arguments{
 \item{fTtabla}{La tabla principal i.e. "la base de datos"}
@@ -25,7 +25,9 @@ frecuentator(fTtabla, fTvariables, fTlevels = T, fbanner = NULL,
 
 \item{fTprop}{Hacer prueba de proporciones? En vez de regresar la tabla de frecuencias se regresa una tabla de prueba de proporciones (igual a las de SPSS)}
 
-\item{fTusarNA}{Cuando por alguna razon mágica necesitemos usar los NA en la frecuencia de una tabal, ponemos true a esto}
+\item{fTusarNA}{Frecuentator omite por default los NA de las variables que le pedimos, pero a veces se necesitan i.e. Cuando agrupo variables para Share of Mind}
+
+\item{fTdecimales}{El redondeo de porcentaje a cuantos decimales debe ser? El default es 1}
 }
 \description{
 Esta función obtiene frecuencias, ponderadas o no, y pruebas de proporciones para tablas tipo encuesta. La funcion necesita el paquete survey.

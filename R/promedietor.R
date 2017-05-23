@@ -53,8 +53,8 @@ promedietor <- function(
   
   if(all(is.na(fTtabla[,fTvariable]))){
     # Toda la variable está llena de NA.... 
-    warning("La variable tiene NA, voy a llenarla de valores artificiales")
-    fTtabla[,fTvariable] <- -1
+    warning("\n La variable objetivo está llena de NA")
+    return(data.frame(vacio="sin casos"))
   }
   
   if(!all(sapply(X = fTtabla[,fbanner],is.factor))){
